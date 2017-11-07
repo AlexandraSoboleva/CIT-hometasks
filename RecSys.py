@@ -8,6 +8,7 @@ import json
 movieRate=[]
 movieContext=[]
 days={"Mon":False,"Tue":False,"Wed":False,"Thu":False,"Fri":False,"Sat":True,"Sun":True,"-":False}
+sim_films=[]
 
 def readcsvFile(filename):
     with open(filename) as csvfile:
@@ -53,7 +54,6 @@ def find5Sim(user):
     return sim_films[len(sim_films)-5:len(sim_films)]
 
 def findRating(user_id, film_id):
-    sim_films=find5Sim(movieRate[user_id])
     sum=0
     modSum=0
     for item in sim_films:
@@ -64,6 +64,7 @@ def findRating(user_id, film_id):
 
 readcsvFile('data.csv')
 my_user=32
+sim_films=find5Sim(movieRate[user_id])
 res={}
 for film_id in range(0,len(movieRate[my_user])):
     if (movieRate[my_user][film_id ]<0):
